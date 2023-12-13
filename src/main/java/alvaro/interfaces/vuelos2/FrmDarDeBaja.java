@@ -157,6 +157,7 @@ public class FrmDarDeBaja extends javax.swing.JFrame {
         }
         }
     public boolean comprobarExiste(){
+        String hola;
        ArrayList<CompanyObjeto> lista = Company.leerLista();
         for (CompanyObjeto co : lista) {
             int prefijoInt = 0;
