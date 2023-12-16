@@ -5,17 +5,12 @@
     <artifactId>Vuelos2</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <dependencies>
-        <dependency>
-            <groupId>alvaro.interfaces</groupId>
-            <artifactId>JDBCTableUC</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
+   
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>16</maven.compiler.source>
         <maven.compiler.target>16</maven.compiler.target>
         <exec.mainClass>alvaro.interfaces.vuelos2.Vuelos2</exec.mainClass>
     </properties>
+    
 </project>

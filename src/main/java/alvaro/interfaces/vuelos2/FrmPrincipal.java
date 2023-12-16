@@ -28,6 +28,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         btnCompany = new javax.swing.JButton();
         btnVuelos = new javax.swing.JButton();
+        btnVuelosDiarios = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -39,6 +40,18 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
 
         btnVuelos.setText("Vuelos");
+        btnVuelos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVuelosActionPerformed(evt);
+            }
+        });
+
+        btnVuelosDiarios.setText("VuelosDiarios");
+        btnVuelosDiarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVuelosDiariosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -47,18 +60,21 @@ public class FrmPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(148, 148, 148)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnVuelosDiarios)
                     .addComponent(btnVuelos)
                     .addComponent(btnCompany))
-                .addContainerGap(162, Short.MAX_VALUE))
+                .addContainerGap(151, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(64, 64, 64)
                 .addComponent(btnCompany)
-                .addGap(93, 93, 93)
+                .addGap(43, 43, 43)
                 .addComponent(btnVuelos)
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addGap(40, 40, 40)
+                .addComponent(btnVuelosDiarios)
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         pack();
@@ -72,6 +88,24 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
     }//GEN-LAST:event_btnCompanyActionPerformed
+
+    private void btnVuelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVuelosActionPerformed
+        // TODO add your handling code here:
+         java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new GestionVuelos().setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_btnVuelosActionPerformed
+
+    private void btnVuelosDiariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVuelosDiariosActionPerformed
+        // TODO add your handling code here:
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new GestionVuelosDiarios().setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_btnVuelosDiariosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -111,5 +145,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCompany;
     private javax.swing.JButton btnVuelos;
+    private javax.swing.JButton btnVuelosDiarios;
     // End of variables declaration//GEN-END:variables
 }

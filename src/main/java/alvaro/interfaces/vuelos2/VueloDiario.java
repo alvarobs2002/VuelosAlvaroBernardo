@@ -5,6 +5,8 @@
 package alvaro.interfaces.vuelos2;
 
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 /**
@@ -13,9 +15,9 @@ import java.util.Date;
  */
 public class VueloDiario {
     private String codigoVuelo;
-    private Date fechaVuelo;
-    private Date horaSalida;
-    private Date horaLlegada;
+    private LocalDate fechaVuelo;
+    private LocalTime horaSalida;
+    private LocalTime horaLlegada;
     private int numeroPlazasOcupadas;
     private int precioVuelo;
     private Vuelo vuelo;
@@ -23,7 +25,7 @@ public class VueloDiario {
     public VueloDiario() {
     }
 
-    public VueloDiario(String codigoVuelo, Date fechaVuelo, Date horaSalida, Date horaLlegada, int numeroPlazasOcupadas, int precioVuelo) {
+    public VueloDiario(String codigoVuelo, LocalDate fechaVuelo, LocalTime horaSalida, LocalTime horaLlegada, int numeroPlazasOcupadas, int precioVuelo) {
         this.codigoVuelo = codigoVuelo;
         this.fechaVuelo = fechaVuelo;
         this.horaSalida = horaSalida;
@@ -32,7 +34,7 @@ public class VueloDiario {
         this.precioVuelo = precioVuelo;
     }
 
-    public VueloDiario(Date fechaVuelo, Date horaSalida, Date horaLlegada, int numeroPlazasOcupadas, int precioVuelo, Vuelo vuelo) {
+    public VueloDiario(LocalDate fechaVuelo, LocalTime horaSalida, LocalTime horaLlegada, int numeroPlazasOcupadas, int precioVuelo, Vuelo vuelo) {
         this.fechaVuelo = fechaVuelo;
         this.horaSalida = horaSalida;
         this.horaLlegada = horaLlegada;
@@ -49,27 +51,27 @@ public class VueloDiario {
         this.codigoVuelo = codigoVuelo;
     }
 
-    public Date getFechaVuelo() {
+    public LocalDate getFechaVuelo() {
         return fechaVuelo;
     }
 
-    public void setFechaVuelo(Date fechaVuelo) {
+    public void setFechaVuelo(LocalDate fechaVuelo) {
         this.fechaVuelo = fechaVuelo;
     }
 
-    public Date getHoraSalida() {
+    public LocalTime getHoraSalida() {
         return horaSalida;
     }
 
-    public void setHoraSalida(Date horaSalida) {
+    public void setHoraSalida(LocalTime horaSalida) {
         this.horaSalida = horaSalida;
     }
 
-    public Date getHoraLlegada() {
+    public LocalTime getHoraLlegada() {
         return horaLlegada;
     }
 
-    public void setHoraLlegada(Date horaLlegada) {
+    public void setHoraLlegada(LocalTime horaLlegada) {
         this.horaLlegada = horaLlegada;
     }
 

@@ -164,7 +164,7 @@ public class FrmDarDeAlta extends javax.swing.JFrame {
        if(!esNumeroEntero(prefijo)){
            lblPrefijoError.setText("Tiene que ser un numero");
        }else{
-           lblPrefijoError.setText("");
+           lblPrefijoError.setText("Se ha guardado correctamente");
             prefijoInt = Integer.parseInt(prefijo);
             String codigo=txtCodigo.getText();
             String nombre=txtNombre.getText();

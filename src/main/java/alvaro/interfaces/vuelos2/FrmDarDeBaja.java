@@ -6,6 +6,7 @@ package alvaro.interfaces.vuelos2;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -38,6 +39,8 @@ public class FrmDarDeBaja extends javax.swing.JFrame {
         btnDarDeBaja = new javax.swing.JButton();
         lblPrefijoError = new javax.swing.JLabel();
         lblError = new javax.swing.JLabel();
+        btnVolver = new javax.swing.JButton();
+        lblInfo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,29 +61,44 @@ public class FrmDarDeBaja extends javax.swing.JFrame {
             }
         });
 
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnDarDeBaja)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnDarDeBaja)
+                                .addGap(97, 97, 97)
+                                .addComponent(btnVolver))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
-                                .addGap(100, 100, 100))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(25, 25, 25)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                            .addComponent(txtPrefijo))
-                        .addGap(18, 18, 18)
-                        .addComponent(lblPrefijoError, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel1)
+                                            .addComponent(jLabel2))
+                                        .addGap(100, 100, 100))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(25, 25, 25)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                                    .addComponent(txtPrefijo))
+                                .addGap(18, 18, 18)
+                                .addComponent(lblPrefijoError, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(154, 154, 154)
+                        .addComponent(lblInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(270, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -98,8 +116,12 @@ public class FrmDarDeBaja extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnDarDeBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDarDeBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVolver))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41))
         );
 
         pack();
@@ -112,6 +134,11 @@ public class FrmDarDeBaja extends javax.swing.JFrame {
     private void btnDarDeBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDarDeBajaActionPerformed
         darDeBaja();
     }//GEN-LAST:event_btnDarDeBajaActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,33 +176,74 @@ public class FrmDarDeBaja extends javax.swing.JFrame {
     }
 
     public void darDeBaja() {
+        ArrayList<CompanyObjeto> lista = Company.leerLista();
+        ArrayList<CompanyObjeto> lista2=new ArrayList<>();
+        int prefijoInt=0;
+        String prefijo=txtPrefijo.getText();
+        prefijoInt=Integer.parseInt(prefijo);
+        String codigo=txtCodigo.getText();
        boolean comp=comprobarExiste();
-       if(comprobarExiste()){
-       
+       if(comp){
+       for(CompanyObjeto co:lista){
+           if((co.getPrefijo()==prefijoInt) && (co.getCodigo().equals(codigo))){
+               
+           }else{
+               int prefijo2=co.getPrefijo();
+               String codigo2=co.getCodigo();
+               String nombre=co.getNombre();
+               String direccion=co.getDireccion();
+               String municipio=co.getMunicipio();
+               String tlfPasajero=co.getTelefonoInfoPasajer();
+               String tlfAereopuerto=co.getTelefonoInfoAereopuerto();
+               lista2.add(co);
+           }
+       }
+       String ruta="src/main/java/archivos/companyCSV.csv";
+       reescribirCSV(lista2,ruta);
+       lblInfo.setText("Se ha actualizado el archivo");
        }else{
            lblError.setText("No existe");
         }
         }
     public boolean comprobarExiste(){
-        String hola;
+       
        ArrayList<CompanyObjeto> lista = Company.leerLista();
         for (CompanyObjeto co : lista) {
             int prefijoInt = 0;
             String prefijo = txtPrefijo.getText();
             if (!FrmDarDeAlta.esNumeroEntero(prefijo)) {
                 lblPrefijoError.setText("Tiene que ser un numero");
+                lblInfo.setText("");
             } else {
                 lblPrefijoError.setText("");
                 prefijoInt = Integer.parseInt(prefijo);
                 String codigo = txtCodigo.getText();
                 if((co.getPrefijo()==prefijoInt) && (co.getCodigo().equals(codigo))){
                     lblError.setText("");
+                    lblInfo.setText("");
                     return true;
                 }
                 }
         }
         return false;
     }
+     public static void reescribirCSV(ArrayList<CompanyObjeto> listaObjetos, String rutaArchivo) {
+        try (FileWriter writer = new FileWriter(rutaArchivo)) {
+            for (CompanyObjeto objeto : listaObjetos) {
+                // Adaptar los campos del objeto a una cadena CSV
+                String csvLine = objeto.getPrefijo() + "," + objeto.getCodigo() + "," + objeto.getNombre() + ","
+                        + objeto.getDireccion() + "," + objeto.getMunicipio() + "," + objeto.getTelefonoInfoPasajer()
+                        + "," + objeto.getTelefonoInfoAereopuerto() + "\n";
+
+                // Escribir la línea CSV en el archivo
+                writer.write(csvLine);
+            }
+
+            System.out.println("Objetos guardados en formato CSV en " + rutaArchivo);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+     }
             
     
         /**
@@ -191,9 +259,11 @@ public class FrmDarDeBaja extends javax.swing.JFrame {
          */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDarDeBaja;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblError;
+    private javax.swing.JLabel lblInfo;
     private javax.swing.JLabel lblPrefijoError;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtPrefijo;
